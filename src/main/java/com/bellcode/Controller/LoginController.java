@@ -12,9 +12,7 @@ public class LoginController {
         return "login";
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String toUserPage(ModelMap modelMap){
+    public String checkLogin(ModelMap modelMap){
         return "user";
-        
-
     }
 }
