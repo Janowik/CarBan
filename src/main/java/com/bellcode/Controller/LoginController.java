@@ -14,6 +14,7 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String toUserPage(ModelMap modelMap){
         return "user";
+        
 
     }
 }
