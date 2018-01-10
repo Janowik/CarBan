@@ -12,7 +12,8 @@ public class LoginController {
         return "login";
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String checkLogin(ModelMap modelMap){
+    public String toUserPage(ModelMap modelMap){
         return "user";
+
     }
 }
