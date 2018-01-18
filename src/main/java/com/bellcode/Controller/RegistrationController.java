@@ -20,22 +20,17 @@ public class RegistrationController {
     private UserService userService;
 
     @GetMapping(value = "/registration")
-    public String showRegistrationForm(Model model){
-        User user = new User();
-        model.addAttribute("user", new User());
+    public String showRegistrationForm(){
         return "registration";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registerNewUser(@Valid User user, BindingResult result, Model model){
-
+    public String registerNewUser(@Valid User user, BindingResult result){
         if(result.hasErrors()){
             return "registration";
         }else {
             userService.saveUser(user);
-            model.addAttribute("message","Rejestracja OK");
-            model.addAttribute("user",new User());
+            return "login";
         }
-        return "registration";
-        }
+    }
 }
