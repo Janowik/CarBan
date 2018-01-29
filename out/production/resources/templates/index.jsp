@@ -1,3 +1,4 @@
+<html xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
     <title>Logowanie</title>

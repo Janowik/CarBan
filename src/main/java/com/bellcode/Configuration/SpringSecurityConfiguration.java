@@ -53,7 +53,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
                 .and().csrf().disable()
-                .formLogin().loginPage("/login").failureUrl("/login?error=true")
+                .formLogin().loginPage("/login").failureUrl("/login?error")
                 .defaultSuccessUrl("/user").usernameParameter("email")
                 .passwordParameter("password")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -64,7 +64,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-                .antMatchers("/resources/**", "/statics/**, /css/**", "/webjars/**","/webapp/**");
+                .antMatchers("/css/**", "/js/**", "/webjars/**");
     }
 
 
