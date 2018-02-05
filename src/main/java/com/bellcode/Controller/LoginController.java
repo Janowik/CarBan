@@ -1,5 +1,6 @@
 package com.bellcode.Controller;
 
+import com.bellcode.Model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -13,7 +14,6 @@ public class LoginController {
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String toUserPage(Model model){
-            model.addAttribute("loginError", true);
         return "user";
     }
 }

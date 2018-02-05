@@ -20,12 +20,13 @@ public class RegistrationController {
     private UserService userService;
 
     @GetMapping(value = "/registration")
-    public String showRegistrationForm(){
+    public String showRegistrationForm(User user, Model model){
+        model.addAttribute(new User());
         return "registration";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registerNewUser(@ModelAttribute("registrationForm") @Valid User user, BindingResult result){
+    public String registerNewUser(@Valid @ModelAttribute("user") User user, BindingResult result){
         if(result.hasErrors()){
             return "registration";
         }else {

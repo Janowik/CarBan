@@ -19,12 +19,12 @@ public class User {
     private  int id;
 
     @Column(name = "email")
-    @NotEmpty(message = "To pole jest wymagane")
+    @NotEmpty(message = "Adres E-mail jest wymagany")
     @Email(message = "Podaj poprawny adres email")
     private String email;
 
     @Column(name = "password")
-    @NotEmpty(message = "To pole jest wymagane")
+    @NotEmpty(message = "Hasło jest wymagane")
     private String password;
 
     @Column(name = "active")
