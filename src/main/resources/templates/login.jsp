@@ -6,6 +6,7 @@
     <link href="webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen"> </link>
 </head>
 <body>
+<a href="przyklad.jsp">Przykład</a>
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">

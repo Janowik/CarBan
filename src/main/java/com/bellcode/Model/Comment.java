@@ -1,6 +1,11 @@
 package com.bellcode.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -8,19 +13,35 @@ import java.util.Set;
 public class Comment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private Long id;
 
+
     @Column(name = "vin_number")
-    private Long vin_number;
+    @NotEmpty(message = "To pole nie może byc puste")
+    @Size(min = 17, max = 17, message = " Numer VIN musi mieć 17 znaków")
+    private String vin_number;
 
     @Column(name = "text")
+    @NotEmpty(message = "To pole nie może byc puste")
     private String text;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_comment", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
-    private Set<Comment> comment;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JoinTable(name = "user_comment",
+            joinColumns = {@JoinColumn(name = "comment_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")})
+    private Set<User> users;
+
+
+    public Comment() {
+    }
+
+    public Comment(String vin_number, String text) {
+        this.vin_number = vin_number;
+        this.text = text;
+    }
 
     public Long getId() {
         return id;
@@ -28,6 +49,14 @@ public class Comment {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getVin_number() {
+        return vin_number;
+    }
+
+    public void setVin_number(String vin_number) {
+        this.vin_number = vin_number;
     }
 
     public String getText() {
@@ -38,19 +67,12 @@ public class Comment {
         this.text = text;
     }
 
-    public Long getVin_number() {
-        return vin_number;
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setVin_number(Long vin_number) {
-        this.vin_number = vin_number;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
-    public Set<Comment> getComment() {
-        return comment;
-    }
-
-    public void setComment(Set<Comment> comment) {
-        this.comment = comment;
-    }
 }

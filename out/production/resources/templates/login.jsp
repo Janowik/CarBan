@@ -6,6 +6,7 @@
     <link href="webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen"> </link>
 </head>
 <body>
+<a href="przyklad.jsp">Przykład</a>
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -14,7 +15,6 @@
     </div>
 </div>
     <form action="#" th:action="@{/login}" method="post">
-
         E-mail: <input type="text" name="email" id="email"/><br>
         Hasło: <input type="password" name="password" id="password"/><br>
         <input type="submit" value="Zaloguj" class="btn btn-primary"/><br>
