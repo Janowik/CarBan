@@ -23,8 +23,6 @@ public class UserController {
 
     @RequestMapping(value = "/user")
     public String toUserPage(Model model, Principal principal){
-
-        SessionFactory sessionFactory;
         String messages = principal.getName();
         model.addAttribute("message", messages);
         return "user";

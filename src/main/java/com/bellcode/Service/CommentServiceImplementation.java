@@ -3,13 +3,13 @@ package com.bellcode.Service;
 import com.bellcode.Model.Comment;
 import com.bellcode.Model.User;
 import com.bellcode.Repository.CommentRepository;
+import com.bellcode.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.security.Principal;
+import java.util.*;
 
 @Service("commentService")
 public class CommentServiceImplementation implements CommentService {
@@ -20,23 +20,21 @@ public class CommentServiceImplementation implements CommentService {
     @Autowired
     CommentService commentService;
 
+    @Autowired
+    UserRepository userRepository;
+
     @Override
     public void saveComment(Comment comment) {
+        Principal principal = SecurityContextHolder.getContext().getAuthentication();
+        String loginUserEmail = principal.getName();
+
         comment.setVin_number(comment.getVin_number());
         comment.setText(comment.getText());
 
-        Set<Comment> comments = new HashSet<>();
-        comments.add(comment);
-
-        User user = new User("jacek.nowak.jn@gmail.com","$2a$10$tNP0o0TH10taiveVCCWlOeimpirlC.DusgT29PvyzLv1dz06qqKbG");
-
-        Set<User> users = new HashSet<>();
-        //masz dodać użytkownika
-        users.add(user);
-
-        comment.setUsers(users);
-
-        commentRepository.save(comments);
+        User user = userRepository.findByEmail(loginUserEmail);
+        comment.setUsers(new HashSet<>(Arrays.asList(user)));
+        
+        commentRepository.save(comment);
     }
 
     @Override
