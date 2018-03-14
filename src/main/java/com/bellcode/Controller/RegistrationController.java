@@ -26,12 +26,17 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registerNewUser(@Valid @ModelAttribute("user") User user, BindingResult result){
-        if(result.hasErrors()){
-            return "registration";
-        }else {
-            userService.saveUser(user);
+    public String registerNewUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model){
+        User userExist = userService.findUserByEmail(user.getEmail());
+        if (userExist != null){
+            model.addAttribute("existUser", "This e-mail are registered in database");
             return "login";
         }
+        if(result.hasErrors()){
+            return "registration";
+        }else if(userExist != null){
+            userService.saveUser(user);
+        }
+        return "login";
     }
 }

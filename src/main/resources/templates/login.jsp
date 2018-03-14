@@ -12,6 +12,10 @@
     <div th:if="${param.error}">
         <p> Adres e-mail lub hasło jest niepoprawne, sprawdź je</p>
     </div>
+    <div th:if="${existUser}" class="alert alert-danger" role="alert">
+        <span th:text="${existUser}"></span>
+    </div>
+
 </form>
 
 <div th:replace="fragments/footer :: footer"></div>
