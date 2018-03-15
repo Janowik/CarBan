@@ -1,19 +1,23 @@
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-    <title>Logowanie</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head th:replace="fragments/header :: header(title='Login')">
 </head>
 <body>
-    <form name="loginForm" th:action="@{/login}" method="post">
+<section th:replace="fragments/navigation :: navigation"></section>
 
-        <p th:if="${loginError}" class="error">Wrong user or password</p>
-        <div th:if="${param.error}">
-            <p> Username or Password invalid, please verify</p>
-        </div>
-        E-mail: <input type="text" name="email" id="email"/>
-        Hasło: <input type="password" name="password" id="password"/>
-        <input type="submit" value="Zaloguj" class="button"/>
-    </form>
-<br>
+<form action="#" th:action="@{/login}" method="post">
+    E-mail: <input type="text" name="email" id="email"/><br>
+    Hasło: <input type="password" name="password" id="password"/><br>
+    <input type="submit" value="Zaloguj" class="btn btn-primary"/><br>
+    <div th:if="${param.error}">
+        <p> Adres e-mail lub hasło jest niepoprawne, sprawdź je</p>
+    </div>
+    <div th:if="${existUser}" class="alert alert-danger" role="alert">
+        <span th:text="${existUser}"></span>
+    </div>
+
+</form>
+
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

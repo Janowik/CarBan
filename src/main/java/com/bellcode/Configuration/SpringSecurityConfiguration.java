@@ -1,5 +1,6 @@
 package com.bellcode.Configuration;
 
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +23,7 @@ import javax.xml.crypto.Data;
 @Configuration
 @EnableWebSecurity
 @AutoConfigureBefore(SecurityAutoConfiguration.class)
-public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
+public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -39,6 +40,11 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Value("${spring.queries.roles-query}")
     private String roleQuery;
 
+    @Bean
+    public LayoutDialect layoutDialect() {
+        return new LayoutDialect();
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().usersByUsernameQuery(userQuery).authoritiesByUsernameQuery(roleQuery)
@@ -51,6 +57,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers("/search").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .formLogin().loginPage("/login").failureUrl("/login?error")
@@ -64,7 +71,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-                .antMatchers("/css/**", "/js/**", "/webjars/**");
+                .antMatchers("/resources**/", "/css/**", "/js/**", "/webjars/**");
     }
 
 
