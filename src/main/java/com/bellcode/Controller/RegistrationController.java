@@ -1,5 +1,6 @@
 package com.bellcode.Controller;
 
+import com.bellcode.Model.Comment;
 import com.bellcode.Model.User;
 import com.bellcode.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -25,6 +25,7 @@ public class UserController {
     public String toUserPage(Model model, Principal principal) {
         String messages = principal.getName();
         model.addAttribute("message", messages);
+        model.addAttribute(new User());
         return "user";
     }
 

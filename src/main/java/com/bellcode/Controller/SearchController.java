@@ -1,6 +1,7 @@
 package com.bellcode.Controller;
 
 import com.bellcode.Model.Comment;
+import com.bellcode.Model.User;
 import com.bellcode.Repository.CommentRepository;
 import com.bellcode.Service.CommentService;
 import com.bellcode.Service.UserService;
@@ -42,6 +43,7 @@ public class SearchController {
     public String searchVinNumber(@ModelAttribute Comment comment, Model model) {
         List<Comment> comments = new ArrayList<>();
         comments = commentRepository.findCommentByVin_number(comment.getVin_number());
+        model.addAttribute(new User());
         model.addAttribute("listVin", comments);
         return "index";
     }

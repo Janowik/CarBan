@@ -1,6 +1,7 @@
 package com.bellcode.Controller;
 
 import com.bellcode.Model.Comment;
+import com.bellcode.Model.User;
 import com.bellcode.Repository.CommentRepository;
 import com.bellcode.Service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,8 @@ public class CommentController {
     }
 
     @PostMapping(value = "/addcomment")
-    public String addNewComment(@Valid @ModelAttribute("comment") Comment comment, BindingResult bindingResult) {
+    public String addNewComment(@Valid @ModelAttribute("comment") Comment comment, BindingResult bindingResult, Model model) {
+        model.addAttribute(new Comment());
         if (bindingResult.hasErrors()) {
             return "addcomment";
         } else {
