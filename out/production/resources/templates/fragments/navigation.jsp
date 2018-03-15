@@ -23,15 +23,15 @@
                 </li>
             </ul>
             <div class="btn-group ml-auto">
-                <a sec:authorize="isAnonymous()" href="#" data-target="#registrationModal" class="btn btn-outline-light"
-                   role="button" data-toggle="modal">Register</a>
+                <a sec:authorize="isAnonymous()" href="/registration" class="btn btn-outline-light" role="button">Register</a>
                 <a sec:authorize="isAuthenticated()" href="/logout" class="btn btn-outline-light"
                    role="button">Logout</a>
-                <a href="LoginModal" href="#" data-target="#loginModal" class="btn btn-outline-light" role="button"
-                   data-toggle="modal">My Account</a>
+                <a href="/user" class="btn btn-outline-light" role="button">My Account</a>
             </div>
         </div>
     </nav>
+<<<<<<< Updated upstream
+=======
 
     <!--LOGIN/REGISTER-->
     <!-- LoginModal -->
@@ -81,12 +81,12 @@
                     <!--/*@thymesVar id="user" type="com.bellcode.Model.User"*/-->
                     <form action="#" th:action="@{/registration}" method="post" th:object="${user}">
                         <div class="form-group">
-                            <label for="formGroupExampleInput">Example label</label>
+                            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" for="formGroupExampleInput"></label>
                             <input type="text" th:field="*{email}" class="form-control" id="formGroupExampleInput"
                                    placeholder="E-mail">
                         </div>
                         <div class="form-group">
-                            <label for="formGroupExampleInput2">Another label</label>
+                            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" for="formGroupExampleInput2"></label>
                             <input type="text" th:field="*{password}" class="form-control" id="formGroupExampleInput2"
                                    placeholder="Password">
                         </div>
@@ -99,6 +99,7 @@
         </div>
     </div>
 
+>>>>>>> Stashed changes
 </navigation>
 </body>
 </html>
