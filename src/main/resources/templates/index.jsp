@@ -5,6 +5,8 @@
 <body>
 <section th:replace="fragments/navigation :: navigation"></section>
 
+<!--LOGIN/REGISTER-->
+
 <!--/*@thymesVar id="comment" type="com.bellcode.Model.Comment"*/-->
 <form action="#" th:action="@{/search}" th:object="${comment}" method="post" class="form-inline justify-content-center">
     <div class="input-group input-group-lg">
@@ -16,6 +18,7 @@
     </div>
 </form>
 
+<!--Search-->
 <div th:if="${not #lists.isEmpty(listVin)}">
     <table>
         <!--/*@thymesVar id="listVin" type="com.bellcode"*/-->
@@ -25,6 +28,7 @@
         </tr>
     </table>
 </div>
+
 
 <div th:replace="fragments/footer :: footer"></div>
 </body>

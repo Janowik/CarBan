@@ -1,6 +1,7 @@
 package com.bellcode.Controller;
 
 import com.bellcode.Model.Comment;
+import com.bellcode.Model.User;
 import com.bellcode.Repository.CommentRepository;
 import com.bellcode.Service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class HomeController {
     @RequestMapping("/")
     public String toHomePage(Model model) {
         model.addAttribute(new Comment());
+        model.addAttribute(new User());
         model.addAttribute("userNotLogin");
         return "index";
     }

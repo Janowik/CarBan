@@ -33,8 +33,8 @@ public class RegistrationController {
             return "login";
         }
         if(result.hasErrors()){
-            return "registration";
-        }else if(userExist != null){
+            return "index";
+        }else{
             userService.saveUser(user);
         }
         return "login";

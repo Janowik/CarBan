@@ -15,7 +15,6 @@
     <div th:if="${existUser}" class="alert alert-danger" role="alert">
         <span th:text="${existUser}"></span>
     </div>
-
 </form>
 
 <div th:replace="fragments/footer :: footer"></div>
