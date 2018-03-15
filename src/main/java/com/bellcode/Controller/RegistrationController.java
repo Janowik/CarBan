@@ -29,12 +29,12 @@ public class RegistrationController {
     public String registerNewUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model){
         User userExist = userService.findUserByEmail(user.getEmail());
         if (userExist != null){
-            model.addAttribute("existUser", "This e-mail are registered in database");
-            return "login";
+            model.addAttribute("existUser", "This email is already registered.");
+            return "registration";
         }
         if(result.hasErrors()){
             return "registration";
-        }else if(userExist != null){
+        }else{
             userService.saveUser(user);
         }
         return "login";

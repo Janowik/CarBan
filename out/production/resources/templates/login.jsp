@@ -4,19 +4,24 @@
 </head>
 <body>
 <section th:replace="fragments/navigation :: navigation"></section>
+<div class="container">
 
-<form action="#" th:action="@{/login}" method="post">
-    E-mail: <input type="text" name="email" id="email"/><br>
-    Hasło: <input type="password" name="password" id="password"/><br>
-    <input type="submit" value="Zaloguj" class="btn btn-primary"/><br>
-    <div th:if="${param.error}">
-        <p> Adres e-mail lub hasło jest niepoprawne, sprawdź je</p>
-    </div>
-    <div th:if="${existUser}" class="alert alert-danger" role="alert">
-        <span th:text="${existUser}"></span>
-    </div>
+    <div class="wrapper">
+        <form action="#" th:action="@{/login}" method="post" class="form-signin" >
+            <h2 class="form-signin-heading">Please login</h2>
 
-</form>
+            <input type="text" class="form-control" name="email" id="email" placeholder="Email Address" />
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button><br>
+            <!--Warning-->
+            <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                <p> Email or password is incorrect.</p>
+            </div>
+            <!--Warning END--->
+        </form>
+    </div>
+</div>
 
 <div th:replace="fragments/footer :: footer"></div>
 </body>

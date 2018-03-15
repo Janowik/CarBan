@@ -21,12 +21,12 @@ public class User {
     private int id;
 
     @Column(name = "email")
-    @NotEmpty(message = "Adres E-mail jest wymagany")
-    @Email(message = "Podaj poprawny adres email")
+    @NotEmpty(message = "Email is required.")
+    @Email(message = "Provide a valid email address.")
     private String email;
 
     @Column(name = "password")
-    @NotEmpty(message = "Hasło jest wymagane")
+    @NotEmpty(message = "Password is required.")
     private String password;
 
     @Column(name = "active")
