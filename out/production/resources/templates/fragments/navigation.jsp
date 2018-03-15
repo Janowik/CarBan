@@ -20,13 +20,9 @@
                 </li>
             </ul>
             <div class="btn-group ml-auto">
-                <div sec:authorize="isAnonymous()">
-                    <a href="/registration" class="btn btn-outline-light" role="button">Register</a>
-                </div>
-                <div sec:authorize="isAuthenticated()">
-                    <a href="/logout" class="btn btn-outline-light" role="button">Logout</a>
-                </div>
-                <a href="/user" class="btn btn-outline-light" role="button">My Account</a>
+                    <a sec:authorize="isAnonymous()" href="/registration" class="btn btn-outline-light" role="button">Register</a>
+                    <a sec:authorize="isAuthenticated()" href="/logout" class="btn btn-outline-light" role="button">Logout</a>
+                    <a href="/user" class="btn btn-outline-light" role="button">My Account</a>
             </div>
         </div>
     </nav>

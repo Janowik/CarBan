@@ -33,7 +33,7 @@ public class CommentServiceImplementation implements CommentService {
 
         User user = userRepository.findByEmail(loginUserEmail);
         comment.setUsers(new HashSet<>(Arrays.asList(user)));
-        
+
         commentRepository.save(comment);
     }
 

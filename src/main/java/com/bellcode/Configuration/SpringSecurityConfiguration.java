@@ -23,7 +23,7 @@ import javax.xml.crypto.Data;
 @Configuration
 @EnableWebSecurity
 @AutoConfigureBefore(SecurityAutoConfiguration.class)
-public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
+public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -41,8 +41,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
     private String roleQuery;
 
     @Bean
-    public LayoutDialect layoutDialect(){
-       return new LayoutDialect();
+    public LayoutDialect layoutDialect() {
+        return new LayoutDialect();
     }
 
     @Override
@@ -71,7 +71,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-                .antMatchers("/resources**/","/css/**", "/js/**", "/webjars/**");
+                .antMatchers("/resources**/", "/css/**", "/js/**", "/webjars/**");
     }
 
 

@@ -18,18 +18,17 @@ public class CommentController {
     public CommentService commentService;
 
 
-
     @GetMapping(value = "/addcomment")
-    public String toCommentPage(Model model){
+    public String toCommentPage(Model model) {
         model.addAttribute(new Comment());
         return "addcomment";
     }
 
     @PostMapping(value = "/addcomment")
-    public String addNewComment(@Valid @ModelAttribute("comment" )Comment comment, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public String addNewComment(@Valid @ModelAttribute("comment") Comment comment, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "addcomment";
-        }else{
+        } else {
             commentService.saveComment(comment);
             return "user";
         }

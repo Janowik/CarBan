@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-public class SearchController{
+public class SearchController {
 
     @Autowired
     CommentRepository commentRepository;
@@ -25,19 +25,21 @@ public class SearchController{
     CommentService commentService;
 
     @RequestMapping("/search/findall")
-    public @ResponseBody List<Comment> myComments(){
-        List<Comment> comments =  commentService.findAll();
-            return comments;
-        }
+    public @ResponseBody
+    List<Comment> myComments() {
+        List<Comment> comments = commentService.findAll();
+        return comments;
+    }
 
     @RequestMapping("/search/{vinNumber}")
-    public @ResponseBody List<Comment> RESTsearchVinNumber(@PathVariable String vinNumber){
-        List<Comment> comments =  commentRepository.findCommentByVin_number(vinNumber);
-            return comments;
-        }
+    public @ResponseBody
+    List<Comment> RESTsearchVinNumber(@PathVariable String vinNumber) {
+        List<Comment> comments = commentRepository.findCommentByVin_number(vinNumber);
+        return comments;
+    }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public String searchVinNumber(@ModelAttribute Comment comment, Model model){
+    public String searchVinNumber(@ModelAttribute Comment comment, Model model) {
         List<Comment> comments = new ArrayList<>();
         comments = commentRepository.findCommentByVin_number(comment.getVin_number());
         model.addAttribute("listVin", comments);

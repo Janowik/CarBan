@@ -15,12 +15,12 @@ public class LoginController {
     UserRepository userRepository;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginPage(Model model){
+    public String loginPage(Model model) {
         return "login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String toUserPage(Model model){
+    public String toUserPage(Model model) {
         return "user";
     }
 }

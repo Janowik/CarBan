@@ -31,20 +31,20 @@ import java.util.Set;
 @ComponentScan("com.bellcode")
 @EnableAutoConfiguration
 @Configuration
-public class CarbanApplication implements CommandLineRunner{
+public class CarbanApplication implements CommandLineRunner {
 
-	@Autowired
-	private CommentRepository commentRepository;
+    @Autowired
+    private CommentRepository commentRepository;
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	public static void main(String[] args) {
-		SpringApplication.run(CarbanApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CarbanApplication.class, args);
+    }
 
 
-	@Override
-	public void run(String... args) throws Exception {
-	}
+    @Override
+    public void run(String... args) throws Exception {
+    }
 }

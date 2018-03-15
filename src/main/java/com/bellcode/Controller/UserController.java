@@ -22,23 +22,25 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(value = "/user")
-    public String toUserPage(Model model, Principal principal){
+    public String toUserPage(Model model, Principal principal) {
         String messages = principal.getName();
         model.addAttribute("message", messages);
         return "user";
     }
 
     @RequestMapping("user/all")
-    public @ResponseBody List<User> findAll(){
+    public @ResponseBody
+    List<User> findAll() {
         List<User> users = userService.findAll();
         return users;
     }
 
     @RequestMapping("user/getlist")
-    public @ResponseBody List<User> getList(){
+    public @ResponseBody
+    List<User> getList() {
         List<User> users = new ArrayList<>();
-        users.add(new User("dupa@wp.pl","jacekpass"));
-        users.add(new User("dupa2@wp.pl","jpass"));
+        users.add(new User("dupa@wp.pl", "jacekpass"));
+        users.add(new User("dupa2@wp.pl", "jpass"));
         return users;
     }
 }

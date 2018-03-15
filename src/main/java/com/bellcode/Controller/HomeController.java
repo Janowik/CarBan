@@ -17,14 +17,14 @@ import javax.validation.Valid;
 public class HomeController {
 
     @RequestMapping("/")
-    public String toHomePage(Model model){
+    public String toHomePage(Model model) {
         model.addAttribute(new Comment());
         model.addAttribute("userNotLogin");
         return "index";
     }
 
     @RequestMapping("/przyklad")
-    public String toPrzykladPage(Model model){
+    public String toPrzykladPage(Model model) {
         model.addAttribute(new Comment());
         return "przyklad";
     }
