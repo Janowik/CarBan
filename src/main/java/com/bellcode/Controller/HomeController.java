@@ -19,6 +19,7 @@ public class HomeController {
     @RequestMapping("/")
     public String toHomePage(Model model){
         model.addAttribute(new Comment());
+        model.addAttribute("userNotLogin");
         return "index";
     }
 

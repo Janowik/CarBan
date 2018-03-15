@@ -1,4 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <title>Logowanie</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> </meta>
@@ -19,8 +20,13 @@
                 </li>
             </ul>
             <div class="btn-group ml-auto">
-                <a href="/registration" class="btn btn-outline-light" role="button">Register</a>
-                <a href="/login" class="btn btn-outline-light" role="button">My Account</a>
+                <div sec:authorize="isAnonymous()">
+                    <a href="/registration" class="btn btn-outline-light" role="button">Register</a>
+                </div>
+                <div sec:authorize="isAuthenticated()">
+                    <a href="/logout" class="btn btn-outline-light" role="button">Logout</a>
+                </div>
+                <a href="/user" class="btn btn-outline-light" role="button">My Account</a>
             </div>
         </div>
     </nav>

@@ -46,23 +46,5 @@ public class CarbanApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		User user = new User("jacek.nowak.jn@gmail.com","$2a$10$tNP0o0TH10taiveVCCWlOeimpirlC.DusgT29PvyzLv1dz06qqKbG");
-		Comment comment = new Comment("11000000000000000","jakas lipa");
-
-		Set<Comment> comments = new HashSet<>();
-		comments.add(comment);
-
-        User user2 = userRepository.findByEmail("druk.janowik@gmail.com");
-
-
-        Set<User> users = new HashSet<>();
-		users.add(user);
-
-
-		comment.setUsers(users);
-		//commentRepository.save(comments);
-
-
-		System.out.println("Id User= " + user.getId());
 	}
 }
