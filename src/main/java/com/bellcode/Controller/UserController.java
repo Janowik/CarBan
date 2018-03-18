@@ -1,5 +1,6 @@
 package com.bellcode.Controller;
 
+import com.bellcode.Model.Comment;
 import com.bellcode.Model.User;
 import com.bellcode.Service.UserService;
 import org.hibernate.SessionFactory;
@@ -24,7 +25,7 @@ public class UserController {
     @RequestMapping(value = "/user")
     public String toUserPage(Model model, Principal principal) {
         String messages = principal.getName();
-        model.addAttribute("message", messages);
+        model.addAttribute(new Comment());
         return "user";
     }
 

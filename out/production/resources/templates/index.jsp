@@ -31,12 +31,26 @@
             </a>
         </div>
         <div class="media-body">
-            <h4 th:text="${comment.vin_number}" class="media-heading"></h4>
-            <p th:text="${comment.text}"></p>
+            <h4 th:text="${comment.text}" class="media-heading"></h4>
+            <span>VIN number: </span><strong><span th:text="${comment.vin_number}"></span></strong>
         </div>
     </div>
 </div>
 <!--Search END-->
+
+<!--No find Vin number-->
+<div class="container text-center">
+    <div th:if="${emptyListVin}">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Sorry...</strong><span th:text="${emptyListVin}"></span>. You want add comment for this number? <a href="user/addcomment" class="alert-link"><strong>Just click there!</strong></a>.
+        </div>
+    </div>
+
+</div>
+<!--No find Vin number END-->
 
 <div th:replace="fragments/footer :: footer"></div>
 </body>

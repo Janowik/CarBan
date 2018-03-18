@@ -42,7 +42,11 @@ public class SearchController {
     public String searchVinNumber(@ModelAttribute Comment comment, Model model) {
         List<Comment> comments = new ArrayList<>();
         comments = commentRepository.findCommentByVin_number(comment.getVin_number());
-        model.addAttribute("listVin", comments);
+        if (comments.isEmpty()){
+            model.addAttribute("emptyListVin", "we couldn't find any matches.");
+        } else {
+            model.addAttribute("listVin", comments);
+        }
         return "index";
     }
 }

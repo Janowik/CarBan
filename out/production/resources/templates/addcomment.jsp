@@ -13,9 +13,6 @@
                     <input type="text" th:field="*{vin_number}" class="form-control" id="exampleFormControlInput1" placeholder="Vin number">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Retype Vin number">
-                </div>
-                <div class="form-group">
                     <textarea th:field="*{text}" class="form-control" id="exampleFormControlTextarea1" rows="8" placeholder="Type your comment..."></textarea>
                 </div>
 
