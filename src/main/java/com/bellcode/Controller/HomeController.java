@@ -23,17 +23,4 @@ public class HomeController {
         model.addAttribute("userNotLogin");
         return "index";
     }
-
-    @RequestMapping("/przyklad")
-    public String toPrzykladPage(Model model) {
-        model.addAttribute(new Comment());
-        return "przyklad";
-    }
-
-    @RequestMapping("/about")
-    public String toAboutPage(){
-        return "about";
-    }
-
-
 }

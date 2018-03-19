@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
 
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        System.out.println(bCryptPasswordEncoder.encode("tracer"));
+        System.out.println(bCryptPasswordEncoder.encode("haslo"));
 
     }
 

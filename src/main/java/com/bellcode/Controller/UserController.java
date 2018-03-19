@@ -35,13 +35,4 @@ public class UserController {
         List<User> users = userService.findAll();
         return users;
     }
-
-    @RequestMapping("user/getlist")
-    public @ResponseBody
-    List<User> getList() {
-        List<User> users = new ArrayList<>();
-        users.add(new User("dupa@wp.pl", "jacekpass"));
-        users.add(new User("dupa2@wp.pl", "jpass"));
-        return users;
-    }
 }
