@@ -11,7 +11,7 @@
 <body>
 <navigation th:fragment="navigation">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <span class="navbar-brand">CARBAN</span>
+        <span class="navbar-brand"><strong>CARBAN</strong><sub>ALPHA v0.65</sub></span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
