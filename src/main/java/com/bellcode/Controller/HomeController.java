@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
@@ -22,12 +23,4 @@ public class HomeController {
         model.addAttribute("userNotLogin");
         return "index";
     }
-
-    @RequestMapping("/przyklad")
-    public String toPrzykladPage(Model model) {
-        model.addAttribute(new Comment());
-        return "przyklad";
-    }
-
-
 }

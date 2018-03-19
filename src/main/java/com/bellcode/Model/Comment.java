@@ -19,12 +19,12 @@ public class Comment {
 
 
     @Column(name = "vin_number")
-    @NotEmpty(message = "To pole nie może byc puste")
-    @Size(min = 17, max = 17, message = " Numer VIN musi mieć 17 znaków")
+    @NotEmpty(message = "Vin number can not be empty.")
+    @Size(min = 17, max = 17, message = "The VIN number must be 17 characters.")
     private String vin_number;
 
     @Column(name = "text")
-    @NotEmpty(message = "To pole nie może byc puste")
+    @NotEmpty(message = "You must write some text.")
     private String text;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -18,9 +18,6 @@ public class CommentServiceImplementation implements CommentService {
     CommentRepository commentRepository;
 
     @Autowired
-    CommentService commentService;
-
-    @Autowired
     UserRepository userRepository;
 
     @Override

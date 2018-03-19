@@ -1,5 +1,6 @@
 package com.bellcode.Controller;
 
+import com.bellcode.Model.Comment;
 import com.bellcode.Model.User;
 import com.bellcode.Service.UserService;
 import org.hibernate.SessionFactory;
@@ -24,7 +25,7 @@ public class UserController {
     @RequestMapping(value = "/user")
     public String toUserPage(Model model, Principal principal) {
         String messages = principal.getName();
-        model.addAttribute("message", messages);
+        model.addAttribute(new Comment());
         return "user";
     }
 
@@ -32,15 +33,6 @@ public class UserController {
     public @ResponseBody
     List<User> findAll() {
         List<User> users = userService.findAll();
-        return users;
-    }
-
-    @RequestMapping("user/getlist")
-    public @ResponseBody
-    List<User> getList() {
-        List<User> users = new ArrayList<>();
-        users.add(new User("dupa@wp.pl", "jacekpass"));
-        users.add(new User("dupa2@wp.pl", "jpass"));
         return users;
     }
 }
