@@ -25,12 +25,10 @@ import javax.xml.crypto.Data;
 @AutoConfigureBefore(SecurityAutoConfiguration.class)
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
-    @Qualifier("dataSource")
-    private DataSource dataSource;
+    //@Qualifier("dataSource")
+    private final DataSource dataSource;
 
     //mapping from application.properties
     @Value("${spring.queries.users-query}")
@@ -39,6 +37,12 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     //mapping from application.properties
     @Value("${spring.queries.roles-query}")
     private String roleQuery;
+
+    @Autowired
+    public SpringSecurityConfiguration(BCryptPasswordEncoder bCryptPasswordEncoder, DataSource dataSource) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.dataSource = dataSource;
+    }
 
     @Bean
     public LayoutDialect layoutDialect() {

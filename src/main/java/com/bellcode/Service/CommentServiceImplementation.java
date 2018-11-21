@@ -14,11 +14,15 @@ import java.util.*;
 @Service("commentService")
 public class CommentServiceImplementation implements CommentService {
 
-    @Autowired
-    CommentRepository commentRepository;
+    private final CommentRepository commentRepository;
+
+    private final UserRepository userRepository;
 
     @Autowired
-    UserRepository userRepository;
+    public CommentServiceImplementation(CommentRepository commentRepository, UserRepository userRepository) {
+        this.commentRepository = commentRepository;
+        this.userRepository = userRepository;
+    }
 
     @Override
     public void saveComment(Comment comment) {
@@ -29,16 +33,14 @@ public class CommentServiceImplementation implements CommentService {
         comment.setText(comment.getText());
 
         User user = userRepository.findByEmail(loginUserEmail);
-        comment.setUsers(new HashSet<>(Arrays.asList(user)));
+        comment.setUsers(new HashSet<>(Collections.singletonList(user)));
 
         commentRepository.save(comment);
     }
 
     @Override
     public List<Comment> findAll() {
-        List<Comment> comments = new ArrayList<>();
-        commentRepository.findAll().forEach(comments::add);
-        return comments;
+        return new ArrayList<>(commentRepository.findAll());
     }
 
 }

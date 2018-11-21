@@ -21,29 +21,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import javax.annotation.PostConstruct;
 import javax.jws.soap.SOAPBinding;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @SpringBootApplication
-@ComponentScan("com.bellcode")
-@EnableAutoConfiguration
 @Configuration
 public class CarbanApplication implements CommandLineRunner {
-
-    @Autowired
-    private CommentRepository commentRepository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(CarbanApplication.class, args);
     }
-
-
     @Override
     public void run(String... args) throws Exception {
     }

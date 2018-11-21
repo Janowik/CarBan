@@ -19,20 +19,21 @@ import java.util.List;
 @Controller
 public class UserController {
 
+    private final UserService userService;
+
     @Autowired
-    UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "/user")
-    public String toUserPage(Model model, Principal principal) {
-        String messages = principal.getName();
+    public String toUserPage(Model model) {
         model.addAttribute(new Comment());
         return "user";
     }
 
     @RequestMapping("user/all")
-    public @ResponseBody
-    List<User> findAll() {
-        List<User> users = userService.findAll();
-        return users;
+    public @ResponseBody List<User> findAll() {
+        return userService.findAll();
     }
 }

@@ -18,29 +18,31 @@ import java.util.List;
 @Controller
 public class SearchController {
 
-    @Autowired
-    CommentRepository commentRepository;
+    private final CommentRepository commentRepository;
+
+    private final CommentService commentService;
 
     @Autowired
-    CommentService commentService;
+    public SearchController(CommentRepository commentRepository, CommentService commentService) {
+        this.commentRepository = commentRepository;
+        this.commentService = commentService;
+    }
 
     @RequestMapping("/search/findall")
     public @ResponseBody
     List<Comment> myComments() {
-        List<Comment> comments = commentService.findAll();
-        return comments;
+        return commentService.findAll();
     }
 
     @RequestMapping("/search/{vinNumber}")
     public @ResponseBody
     List<Comment> RESTsearchVinNumber(@PathVariable String vinNumber) {
-        List<Comment> comments = commentRepository.findCommentByVin_number(vinNumber);
-        return comments;
+        return commentRepository.findCommentByVin_number(vinNumber);
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public String searchVinNumber(@ModelAttribute Comment comment, Model model) {
-        List<Comment> comments = new ArrayList<>();
+        List<Comment> comments;
         comments = commentRepository.findCommentByVin_number(comment.getVin_number());
         if (comments.isEmpty()){
             model.addAttribute("emptyListVin", "we couldn't find any matches.");

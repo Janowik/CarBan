@@ -16,8 +16,12 @@ import javax.validation.Valid;
 @Controller
 public class RegistrationController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public RegistrationController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping(value = "/registration")
     public String showRegistrationForm(User user, Model model){

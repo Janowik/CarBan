@@ -14,8 +14,12 @@ import javax.validation.Valid;
 @Controller
 public class CommentController {
 
+    private final CommentService commentService;
+
     @Autowired
-    public CommentService commentService;
+    public CommentController(CommentService commentService) {
+        this.commentService = commentService;
+    }
 
 
     @GetMapping(value = "/user/addcomment")

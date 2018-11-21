@@ -9,19 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Service("userService")
 public class UserServiceImplementation implements UserService {
+
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private RoleRepository roleRepository;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    public UserServiceImplementation(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @Override
     public User findUserByEmail(String email) {
@@ -33,15 +35,13 @@ public class UserServiceImplementation implements UserService {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
         Role userRole = roleRepository.findByRole("ROLE_ADMIN");
-        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+        user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
         userRepository.save(user);
     }
 
     @Override
     public List<User> findAll() {
-        List<User> userList = new ArrayList<>();
-        userRepository.findAll().forEach(userList::add);
-        return userList;
+        return new ArrayList<>(userRepository.findAll());
     }
 
     @Override
